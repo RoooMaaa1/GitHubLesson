@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/users")
@@ -21,6 +23,12 @@ public class UserController {
     @GetMapping()
     public ResponseEntity<User> getUserById(@RequestParam int id){
         return userService.getUserById(id);
+    }
+
+    @GetMapping("/info-date")
+    public ResponseEntity<String> getDate(){
+        LocalDateTime now = LocalDateTime.now();
+        return ResponseEntity.status(200).body(now.toString());
     }
 
     @DeleteMapping()
